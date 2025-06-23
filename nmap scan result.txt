@@ -1,0 +1,88 @@
+Starting Nmap 7.97 ( https://nmap.org ) at 2025-06-23 11:29 +0530
+Nmap scan report for 192.168.1.1
+Host is up (0.0088s latency).
+Not shown: 996 closed tcp ports (reset)
+PORT    STATE    SERVICE
+23/tcp  filtered telnet
+53/tcp  open     domain
+80/tcp  open     http
+443/tcp open     https
+
+Nmap scan report for 192.168.1.2
+Host is up (0.0030s latency).
+All 1000 scanned ports on 192.168.1.2 are in ignored states.
+Not shown: 1000 filtered tcp ports (no-response)
+
+Nmap scan report for 192.168.1.24
+Host is up (0.016s latency).
+Not shown: 998 filtered tcp ports (no-response)
+PORT      STATE  SERVICE
+44176/tcp closed unknown
+44501/tcp closed unknown
+
+Nmap done: 256 IP addresses (3 hosts up) scanned in 67.48 seconds
+
+potential security risk on open port 
+
+Port	Protocol	                                     Potential Security Risks
+23	 TCP	  Telnet (Filtered)	 High	           - Unencrypted login credentials
+                                                          - Vulnerable to man-in-the-middle (MITM) attacks
+                                                         - May be exploitable by old router backdoors
+53	TCP	DNS	 	                       - Can be abused for DNS amplification attacks
+                                                        - May allow zone transfers if misconfigured
+80	TCP	HTTP                                    - Unencrypted web interface can leak passwords
+                                                     - Vulnerable to XSS / CSRF / brute-force attacks on router login                                            
+ 
+interview question 
+1 what is open port ? A port is like a virtual door on a device (such as a computer, router, or server) used to send or receive data
+2 what does nmap perform a tcpsyn scan? 
+Nmap sends a SYN packet to a target port (this is the first step of a TCP handshake).
+
+If it replies with SYN-ACK, the port is open.
+
+If it replies with RST (Reset), the port is closed.
+
+If there’s no response or ICMP unreachable, it’s filtered (likely by a firewall).
+
+3. what are risk associated with open ports?
+ Unauthorized Access	If a service (like Telnet, FTP, SMB) is open and misconfigured, attackers can log in — especially with default or weak passwords.
+ Misconfiguration	Services like DNS, UPnP, or HTTP might leak data or allow attacks if not hardened.
+ Information Disclosure	Open ports can reveal system banners, software versions, or internal network structure. This helps attackers plan targeted attacks.
+Amplification Attacks	Open ports like DNS (53), NTP (123), or SSDP (1900) can be abused for DDoS reflection attacks.
+
+4.explain the difference between tcp and udp scanning ?
+TCP scanning uses a handshake to check if a port is open, while UDP scanning sends a packet without a handshake and checks for a response, making it slower and harder to interpret.
+
+5.how open port can be secured?
+Disable unused services from router or device - close unnecessary ports
+Block inbound connections from unknown IPs
+Keep all services (e.g., SSH, Apache, DNS) up to date
+
+6. what is firewall role regarding ports ?
+A firewall controls access to network ports by allowing or blocking traffic based on security rules. It helps protect open ports from unauthorized access and filters malicious traffic, reducing the risk of attacks such as port scanning or unauthorized service use.
+
+7. what is port scan and why do attacker perform it ?
+A port scan is a technique used to identify open, closed, or filtered ports on a target device or network. It helps determine which services are running.
+Identify open ports that may be running vulnerable services (e.g., Telnet, FTP, SMB).
+
+Map the network to understand the systems and their configurations.
+
+Plan attacks such as exploitation, brute-force, or denial-of-service based on discovered ports and services.
+
+8. how does Wireshark complement port scanning?
+
+Wireshark complements port scanning by providing deep packet inspection and helping analyze network traffic in real-time.
+Verifies scan results – After a port scan (e.g., using Nmap), Wireshark can confirm if packets (like SYN, ACK, RST) were sent/received properly.
+Identifies hidden responses – It can detect filtered or dropped packets not shown in basic scan output.
+Detects suspicious activity – Wireshark can capture and analyze unauthorized scans or probes on your network, helping in threat detection and forensic analysis.
+So, port scanning shows what is open, and Wireshark shows how the communication happens.
+
+
+
+
+
+
+
+
+
+
