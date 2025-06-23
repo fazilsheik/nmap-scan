@@ -1,0 +1,21 @@
+# Network Scanning & Analysis Project
+
+This project demonstrates basic **network reconnaissance** using **Nmap** for port scanning and **Wireshark** for traffic analysis.
+
+# Objectives
+- Scan a local network to identify live hosts and open ports.
+- Analyze common services (HTTP, SSH, DNS, etc.).
+- Understand risks associated with open ports.
+- Use Wireshark to verify scan packets and observe network behavior.
+
+# Tools Used
+- **Nmap** – For scanning IPs and discovering open ports.
+- **Wireshark** – For capturing and analyzing packet-level data.
+
+# Features
+- TCP SYN and UDP scans with Nmap.
+- Detection of filtered, open, and closed ports.
+- Wireshark trace analysis of port scanning activities.
+- Security risk interpretation for open ports.
+
+
